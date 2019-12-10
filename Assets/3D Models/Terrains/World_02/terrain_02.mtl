@@ -1,0 +1,14 @@
+# Blender MTL File: 'None'
+# Material Count: 1
+
+newmtl terrain_02
+Ns 179.999996
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.0 0.0 0.0
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd /Users/ahmadsuyadi/UnityProject/Kuliah/CobaAja/Assets/Images/terrain_02.png
+map_d /Users/ahmadsuyadi/UnityProject/Kuliah/CobaAja/Assets/Images/terrain_02.png
