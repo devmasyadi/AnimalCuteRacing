@@ -5,9 +5,11 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class CarController : MonoBehaviour
 {
+    public static CarController instance;
     public bool isUsInput;
     public bool isInputMobile;
     public Transform driverParent;
+    public float fuel;
     public float maxTurn;
     public float powerEngine;
     public float powerBreake;
@@ -31,8 +33,9 @@ public class CarController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        instance = this;
         _rigidbody = GetComponent<Rigidbody>();
-        // _rigidbody.maxAngularVelocity = 2f;
+        _rigidbody.maxAngularVelocity = 2f;
         if (objSmoke != null && parentSmoke != null)
         {
             var mySmoke = Instantiate(objSmoke, parentSmoke);

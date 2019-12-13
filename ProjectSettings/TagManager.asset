@@ -9,6 +9,9 @@ TagManager:
   - ForwardTrigger
   - ItemGas
   - ItemCoin
+  - ItemCoin1
+  - ItemCoin5
+  - LineFinish
   layers:
   - Default
   - TransparentFX

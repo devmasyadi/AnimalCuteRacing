@@ -7,16 +7,17 @@ public class MainMenuManager : MonoBehaviour
     public static MainMenuManager instance;
     public GameObject panelCarSelection;
     public GameObject panelWorldSelection;
+    public GameObject panelLevelSelection;
     public GameObject panelSelectMode;
+
     // Start is called before the first frame update
     void Start()
     {
-        if (instance != null && instance != this)
-            Destroy(gameObject);
-        else
-            instance = this;
+
+        instance = this;
         ShowPanelCarSelection();
-        CarsSelection.instance.FirstSpawnModelById("A_01");
+
+        CarsSelection.instance.FirstSpawnModelById(PlayerPrefs.GetString("Player"));
         MusicManager.instance.PlayAudio("MusicMenu");
     }
 
@@ -26,22 +27,31 @@ public class MainMenuManager : MonoBehaviour
 
     }
 
+    void SetBasePanel(bool panelCarSelection, bool panelWorldSelection, bool panelLevelSelection, bool panelSelectMode)
+    {
+        this.panelCarSelection.SetActive(panelCarSelection);
+        this.panelWorldSelection.SetActive(panelWorldSelection);
+        this.panelLevelSelection.SetActive(panelLevelSelection);
+        this.panelSelectMode.SetActive(panelSelectMode);
+    }
+
     public void ShowPanelCarSelection()
     {
-        panelCarSelection.SetActive(true);
-        panelWorldSelection.SetActive(false);
-        panelSelectMode.SetActive(false);
+        SetBasePanel(true, false, false, false);
     }
 
     public void ShowPanelWorldSelection()
     {
-        panelCarSelection.SetActive(false);
-        panelWorldSelection.SetActive(true);
-        panelSelectMode.SetActive(false);
+        SetBasePanel(false, true, false, false);
+    }
+
+    public void ShowPanelLevelSelection()
+    {
+        SetBasePanel(false, false, true, false);
     }
 
     public void ShowPanelSelectMode()
     {
-        panelSelectMode.SetActive(true);
+        SetBasePanel(false, false, false, true);
     }
 }

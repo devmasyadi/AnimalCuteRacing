@@ -24,5 +24,15 @@ public class DriverController : MonoBehaviour
         animator.SetFloat(NGE_DRIVE_KEY, ngeDrive);
     }
 
+    public void SetAnimLoss()
+    {
+        animator.SetTrigger(BENSIN_HABIS_KEY);
+    }
+
+    public void SetAnimWin()
+    {
+        animator.SetTrigger(MENANG_KEY);
+    }
+
     
 }

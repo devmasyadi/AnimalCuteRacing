@@ -7,13 +7,11 @@ public class PanelWorldSelection : MonoBehaviour
 {
     public ScrollRect scrollViewWorld;
     public Button btnBack;
-    public Button btnNext;
+    
     // Start is called before the first frame update
     void Start()
     {
         btnBack.onClick.AddListener(()=> MainMenuManager.instance.ShowPanelCarSelection());
-        btnNext.onClick.AddListener(()=> MainMenuManager.instance.ShowPanelSelectMode());
-
         setUpBtnContent();
     }
 
@@ -23,6 +21,10 @@ public class PanelWorldSelection : MonoBehaviour
         for(var i=0; i<content.childCount; i++)
         {
             var itemContent = content.GetChild(i).gameObject.AddComponent<Button>();
+            itemContent.onClick.AddListener(delegate{
+                MainMenuManager.instance.ShowPanelLevelSelection();
+                MainMenuManager.instance.panelLevelSelection.GetComponent<PanelLevelSelection>().SetPanelSelection(itemContent.gameObject.name);
+            });
         }
     }
 }
