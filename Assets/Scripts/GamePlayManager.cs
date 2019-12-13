@@ -17,6 +17,7 @@ public class GamePlayManager : MonoBehaviour
     public State state;
     public GameObject panelResume;
     public GameObject panelGameOver;
+    public GameObject panelGameFinish;
     public Transform parentPlayer;
     public Transform parentLevel;
 
@@ -54,23 +55,24 @@ public class GamePlayManager : MonoBehaviour
 
     }
 
-    void SetUpBasePanel(bool panelResume, bool panelGameOver)
+    void SetUpBasePanel(bool panelResume, bool panelGameOver, bool panelGameFinish)
     {
         this.panelResume.SetActive(panelResume);
         this.panelGameOver.SetActive(panelGameOver);
+        this.panelGameFinish.SetActive(panelGameFinish);
     }
 
     public void PlayGame()
     {
         state = State.play;
-        SetUpBasePanel(false, false);
+        SetUpBasePanel(false, false, false);
         MusicManager.instance.PlayAudio("MusicWorld_1");
     }
 
     public void ShowPanelResume()
     {
         state = State.resume;
-        SetUpBasePanel(true, false);
+        SetUpBasePanel(true, false, false);
     }
 
     public void BackMainMenu()
@@ -87,7 +89,7 @@ public class GamePlayManager : MonoBehaviour
     {
         state = State.gameOver;
         DriverController.instance.SetAnimLoss();
-        SetUpBasePanel(false, true);
+        SetUpBasePanel(false, true, false);
     }
 
     public void Finish()
