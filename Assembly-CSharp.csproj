@@ -45,6 +45,19 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Epic Toon FX\Demo\ParticleEffectsShowcase\Scripts\ParticleEffectsLibrary.cs" />
+     <Compile Include="Assets\Epic Toon FX\Demo\ParticleEffectsShowcase\Scripts\PEButtonScript.cs" />
+     <Compile Include="Assets\Epic Toon FX\Demo\ParticleEffectsShowcase\Scripts\PEDestoryTimed.cs" />
+     <Compile Include="Assets\Epic Toon FX\Demo\ParticleEffectsShowcase\Scripts\UICanvasManager.cs" />
+     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXButtonScript.cs" />
+     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXFireProjectile.cs" />
+     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXLoopScript.cs" />
+     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXMouseOrbit.cs" />
+     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXProjectileScript.cs" />
+     <Compile Include="Assets\Epic Toon FX\Demo\Scripts\ETFXSceneManager.cs" />
+     <Compile Include="Assets\Epic Toon FX\Scripts\ETFXLightFade.cs" />
+     <Compile Include="Assets\Epic Toon FX\Scripts\ETFXPitchRandomizer.cs" />
+     <Compile Include="Assets\Epic Toon FX\Scripts\ETFXRotation.cs" />
      <Compile Include="Assets\Fantasy Skybox FREE\Demo\Scripts\GE_FantasySkyboxFREE_Demo.cs" />
      <Compile Include="Assets\Fantasy Skybox FREE\Demo\Scripts\GE_FantasySkyboxFREE_UIs.cs" />
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
@@ -89,6 +102,7 @@
      <None Include="Assets\Font\BMFont\BMFont.fnt" />
      <None Include="Assets\Font\BMFont2\BMFont.fnt" />
      <None Include="Assets\Shader\PlayerShader.shader" />
+     <None Include="Assets\Epic Toon FX\ETFX Readme.txt" />
      <None Include="Assets\WSM Game Studio\Spline Mesh Renderer\_Demo\DemoMaterials\Textures\Solar System Textures License.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>/Users/ahmadsuyadi/UnityProject/Kuliah/AnimalCuteRacing/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
@@ -111,14 +125,14 @@
  <Reference Include="Unity.Rider.Editor">
  <HintPath>/Users/ahmadsuyadi/UnityProject/Kuliah/AnimalCuteRacing/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.2D.Sprite.Editor">
+ <HintPath>/Users/ahmadsuyadi/UnityProject/Kuliah/AnimalCuteRacing/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="Unity.TextMeshPro">
  <HintPath>/Users/ahmadsuyadi/UnityProject/Kuliah/AnimalCuteRacing/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
  <HintPath>/Users/ahmadsuyadi/UnityProject/Kuliah/AnimalCuteRacing/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
- </Reference>
- <Reference Include="Unity.2D.Sprite.Editor">
- <HintPath>/Users/ahmadsuyadi/UnityProject/Kuliah/AnimalCuteRacing/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine">
  <HintPath>/Applications/Unity 2019.2.15f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
