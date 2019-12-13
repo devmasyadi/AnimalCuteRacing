@@ -117,6 +117,9 @@
  <Reference Include="UnityEditor.UI">
  <HintPath>/Users/ahmadsuyadi/UnityProject/Kuliah/AnimalCuteRacing/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
+ <Reference Include="Unity.2D.Sprite.Editor">
+ <HintPath>/Users/ahmadsuyadi/UnityProject/Kuliah/AnimalCuteRacing/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine">
  <HintPath>/Applications/Unity 2019.2.15f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
