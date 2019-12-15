@@ -34,8 +34,8 @@ public class GamePlayManager : MonoBehaviour
         nameWorld = PlayerPrefs.GetString("nameWorld");
         indexLevel = PlayerPrefs.GetInt("indexLevel");
 
-        Debug.Log("nameWOrld : " + nameWorld);
-        Debug.Log("indexLevel : " + indexLevel);
+        // Debug.Log("nameWOrld : " + nameWorld);
+        // Debug.Log("indexLevel : " + indexLevel);
 
         WorldsSelection.instance.SpawnLevelByIndex(nameWorld, indexLevel, parentLevel);
     }
