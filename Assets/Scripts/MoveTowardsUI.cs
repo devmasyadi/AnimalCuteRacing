@@ -46,7 +46,6 @@ public class MoveTowardsUI : MonoBehaviour
 
         private void Update()
         {
-            transform.Rotate( Vector3.forward * 180 * Time.deltaTime);
             if (Target == null || Camera.main == null || Speed <= float.Epsilon)
             {
                 _isMoving = false;

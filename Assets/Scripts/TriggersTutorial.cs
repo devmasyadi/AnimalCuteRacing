@@ -34,6 +34,9 @@ public class TriggersTutorial : MonoBehaviour
         forwardTrigger.enabled = false;
 
         panelTutorial.btnBrake.onClick.AddListener(() => DisableKinematic());
+
+        SetItemCoins();
+        SetItemGas();
     }
 
     void Update()
@@ -69,15 +72,17 @@ public class TriggersTutorial : MonoBehaviour
         }
         else if (collider.gameObject.tag.Equals("ItemGas"))
         {
+            collider.GetComponent<MoveTowardsUI>().Target = PanelTutorial.instance.dummyCoinTxt;
             collider.enabled = false;
             Debug.Log("Kena : " + collider.gameObject);
-            Destroy(collider.gameObject);
+            // Destroy(collider.gameObject);
         }
         else if (collider.gameObject.tag.Equals("ItemCoin"))
         {
+            collider.GetComponent<MoveTowardsUI>().Target = PanelTutorial.instance.dummyCoinTxt;
             collider.enabled = false;
             Debug.Log("Kena : " + collider.gameObject);
-            Destroy(collider.gameObject);
+            // Destroy(collider.gameObject);
         }
         else if (collider.gameObject.name.Equals("JumpTrigger"))
         {
@@ -108,5 +113,30 @@ public class TriggersTutorial : MonoBehaviour
     void rotasiCar(float dirX)
     {
         transform.Rotate(Vector3.right * dirX * 100 * Time.deltaTime);
+    }
+
+    void SetItemCoins()
+    {
+        var itemCoins = GameObject.FindGameObjectsWithTag("ItemCoin");
+        AddMoveTowardsUI(itemCoins, true);
+    }
+
+    void SetItemGas()
+    {
+        var itemGass = GameObject.FindGameObjectsWithTag("ItemGas");
+        AddMoveTowardsUI(itemGass, false);
+    }
+
+    void AddMoveTowardsUI(GameObject[] objects, bool isRotate)
+    {
+        foreach (var item in objects)
+        {
+            var moveTowardsUI = item.AddComponent<MoveTowardsUI>();
+            if(isRotate)
+                item.AddComponent<RotateObj>().speedRotation = 180f;
+            moveTowardsUI.Speed = 1;
+            moveTowardsUI.StopOnArrival = true;
+            moveTowardsUI.MoveInZ = false;
+        }
     }
 }

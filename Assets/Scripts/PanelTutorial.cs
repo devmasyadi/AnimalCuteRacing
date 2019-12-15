@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class PanelTutorial : MonoBehaviour
 {
     public static PanelTutorial instance;
+    public GameObject dummyCoinTxt;
     public Text txtInfoYellow;
     public Text txtInfo;
     public Button btnResume;
