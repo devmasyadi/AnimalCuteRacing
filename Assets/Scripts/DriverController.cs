@@ -11,11 +11,18 @@ public class DriverController : MonoBehaviour
     string MENANG_KEY = "menang";
     string NGE_DRIVE_KEY = "ngeDrive";
     Animator animator;
+    Rigidbody rb;
+
+    public Collider mainCollider;
+    Collider[] allCollider;
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
+        allCollider = GetComponentsInChildren<Collider>(true);
         animator = GetComponent<Animator>();
+        // rb = GetComponent<Rigidbody>();
+        DoRagdoll(false);
     }
 
     public void SetOnGamePlay(float ngeDrive)
@@ -34,5 +41,30 @@ public class DriverController : MonoBehaviour
         animator.SetTrigger(MENANG_KEY);
     }
 
-    
+    public void DoRagdoll(bool isRagdoll)
+    {
+        foreach (var item in allCollider)
+            item.enabled = isRagdoll;
+        mainCollider.enabled = !isRagdoll;
+        animator.enabled = !isRagdoll;
+        // if (!isRagdoll)
+        //     rb.constraints = RigidbodyConstraints.FreezeAll;
+        // else
+        //     rb.constraints = RigidbodyConstraints.None;
+
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag.Equals("DeadTrigger"))
+        {
+            Debug.Log("mati");
+            transform.parent.DetachChildren();
+            DoRagdoll(true);
+        }
+        Debug.Log("Layer mask : "+collision.gameObject.layer);
+        Debug.Log("kena : "+collision.gameObject.tag);
+    }
+
+
 }

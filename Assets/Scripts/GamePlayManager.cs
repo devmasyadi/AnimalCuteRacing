@@ -30,13 +30,13 @@ public class GamePlayManager : MonoBehaviour
     {
         if (CarsSelection.instance != null)
             CarsSelection.instance.BaseSpawnModelById(PlayerPrefs.GetString("Player"), true, parentPlayer, -11.8f);
-        
+
         nameWorld = PlayerPrefs.GetString("nameWorld");
         indexLevel = PlayerPrefs.GetInt("indexLevel");
 
-        Debug.Log("nameWOrld : "+nameWorld);
-        Debug.Log("indexLevel : "+indexLevel);
-        
+        Debug.Log("nameWOrld : " + nameWorld);
+        Debug.Log("indexLevel : " + indexLevel);
+
         WorldsSelection.instance.SpawnLevelByIndex(nameWorld, indexLevel, parentLevel);
     }
 
@@ -89,6 +89,13 @@ public class GamePlayManager : MonoBehaviour
     {
         state = State.gameOver;
         DriverController.instance.SetAnimLoss();
+        SetUpBasePanel(false, true, false);
+    }
+
+    public void DeadByTrigger()
+    {
+        state = State.gameOver;
+        DriverController.instance.DoRagdoll(true);
         SetUpBasePanel(false, true, false);
     }
 

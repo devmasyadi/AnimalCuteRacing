@@ -24,6 +24,8 @@ public class TriggersGamePlay : MonoBehaviour
             {
                 GamePlayManager.instance.Finish();
             }
+
+           
             // if(collider.tag.Equals("ItemCoin1"))
             // {
             //     Debug.Log("Kena : "+collider.tag);
@@ -33,5 +35,10 @@ public class TriggersGamePlay : MonoBehaviour
             //     Debug.Log("Kena : "+collider.tag);
             // }
         }
+    }
+
+    void OnCollisionEnter(Collision other) {
+        // GamePlayManager.instance.DeadByTrigger();
+        // Debug.Log("kena : "+other.gameObject.tag);
     }
 }

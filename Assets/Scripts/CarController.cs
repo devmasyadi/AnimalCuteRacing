@@ -6,8 +6,19 @@ using UnityStandardAssets.CrossPlatformInput;
 public class CarController : MonoBehaviour
 {
     public static CarController instance;
+    public enum WheelDriveType
+    {
+        NONE,
+        REAR_WD,
+        FRONT_WD,
+        FOUR_WD
+    }
+
+    public WheelDriveType wheelDriveType;
     public bool isUsInput;
     public bool isInputMobile;
+    public Transform centerOfMassa;
+    public AudioClip soundEngine;
     public Transform driverParent;
     public float fuel;
     public float maxTurn;
@@ -30,6 +41,7 @@ public class CarController : MonoBehaviour
     float minSizeSmoke = 1.5f;
     float maxSizeSmoke = 6f;
     Rigidbody _rigidbody;
+    AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +53,10 @@ public class CarController : MonoBehaviour
             var mySmoke = Instantiate(objSmoke, parentSmoke);
             smoke = mySmoke.GetComponent<ParticleSystem>();
         }
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+        audioSource.loop = true;
+        PlaySoundEngine();
     }
 
     // Update is called once per frame
@@ -49,6 +65,8 @@ public class CarController : MonoBehaviour
         SetUpInput();
         rotasiVehicle();
         setSmoke();
+        setCenterOfMassa();
+        // SetSoundEngineSystem();
     }
 
     void SetUpInput()
@@ -57,15 +75,16 @@ public class CarController : MonoBehaviour
         {
             motorTorque = Input.GetAxis("Horizontal");
             steerAngle = Input.GetAxis("Vertical");
-            SetUpWheels();
         }
 
         if (isUsInput && isInputMobile)
         {
             motorTorque = CrossPlatformInputManager.GetAxis("Horizontal");
             steerAngle = CrossPlatformInputManager.GetAxis("Vertical");
-            SetUpWheels();
+
         }
+
+        SetUpWheels();
 
         if (DriverController.instance != null)
             DriverController.instance.SetOnGamePlay(motorTorque);
@@ -78,10 +97,11 @@ public class CarController : MonoBehaviour
         {
             foreach (var wheel in throttleWheels)
             {
-                wheel.motorTorque = motorTorque * powerEngine;
+                if(wheelDriveType == WheelDriveType.REAR_WD || wheelDriveType == WheelDriveType.FOUR_WD)
+                    wheel.motorTorque = motorTorque * powerEngine;
                 SetPosRotObjWheel(wheel);
                 breakWheel(wheel);
-                if(wheel.isGrounded)
+                if (wheel.isGrounded)
                     stableCar();
             }
         }
@@ -89,9 +109,12 @@ public class CarController : MonoBehaviour
         {
             foreach (var wheel in steerWheels)
             {
+                 if(wheelDriveType == WheelDriveType.FRONT_WD || wheelDriveType == WheelDriveType.FOUR_WD)
+                    wheel.motorTorque = motorTorque * powerEngine;
                 wheel.steerAngle = steerAngle * maxTurn;
                 SetPosRotObjWheel(wheel);
-                if(wheel.isGrounded)
+                breakWheel(wheel);
+                if (wheel.isGrounded)
                     stableCar();
             }
         }
@@ -159,4 +182,51 @@ public class CarController : MonoBehaviour
                 main.startSize = minSizeSmoke;
         }
     }
+
+    void PlaySoundEngine()
+    {
+        audioSource.clip = soundEngine;
+        audioSource.Play();
+    }
+
+    void SetSoundEngineSystem()
+    {
+        if (motorTorque != 0)
+        {
+            var currentSpeed = _rigidbody.velocity.magnitude * 3.6f;
+            Debug.Log("currentSpeed :" + currentSpeed);
+            var jos = currentSpeed * Time.deltaTime;
+            Debug.Log("jos : " + jos);
+            if (currentSpeed > 100)
+            {
+                audioSource.pitch = 3f;
+
+            }
+            else
+            {
+                var ini = Mathf.Clamp(Mathf.Abs(motorTorque) * 120f * Time.deltaTime, 1, 3);
+                audioSource.pitch = ini;
+                Debug.Log(ini);
+            }
+            // var pitch = currentSpeed / 30f;
+            // Debug.Log("currentSpeed : " + currentSpeed);
+            // Debug.Log("Pitch : "+pitch);
+            // audioSource.pitch = pitch;
+
+        }
+        else
+        {
+            audioSource.pitch = 1f;
+        }
+    }
+
+    void setCenterOfMassa()
+    {
+        if (centerOfMassa == null)
+            return;
+        if (transform.InverseTransformPoint(centerOfMassa.position) == _rigidbody.centerOfMass)
+            return;
+        _rigidbody.centerOfMass = transform.InverseTransformPoint(centerOfMassa.transform.position);
+    }
+
 }

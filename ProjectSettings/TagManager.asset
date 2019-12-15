@@ -12,6 +12,9 @@ TagManager:
   - ItemCoin1
   - ItemCoin5
   - LineFinish
+  - DeadTrigger
+  - Driver
+  - Ground
   layers:
   - Default
   - TransparentFX
