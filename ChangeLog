@@ -1,3 +1,12 @@
+V1.3
+- Fix Scene Tutorial (vehicle based on user choice, fix trigger);
+- Fix Trigger Coin
+- Add camera start GamePlay, GameOver and GameFinish
+- Add Engine sound
+- Add Lock Unlock System (vehicle, world and level)
+- Add Rewards Ads
+
+
 V1.2
 - Add rotasi camera MainMenu
 - Add Animator CameraGameplay
