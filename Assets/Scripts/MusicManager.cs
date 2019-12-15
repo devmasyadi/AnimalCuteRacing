@@ -21,13 +21,13 @@ public class MusicManager : MonoBehaviour
         if (instance != null && instance != this)
             Destroy(gameObject);
         else
-            instance = this;
+            DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        instance = this;
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
     }
