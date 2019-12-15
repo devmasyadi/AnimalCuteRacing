@@ -247,7 +247,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 96
   m_CollisionDetection: 0
 --- !u!114 &6379467798722760260
 MonoBehaviour:
@@ -264,6 +264,7 @@ MonoBehaviour:
   isUsInput: 1
   isInputMobile: 1
   driverParent: {fileID: 2611247735946992908}
+  fuel: 30
   maxTurn: 0
   powerEngine: 1000
   powerBreake: 5000
@@ -547,7 +548,7 @@ GameObject:
   - component: {fileID: 6379467799458253365}
   m_Layer: 0
   m_Name: Body
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -684,7 +685,7 @@ WheelCollider:
     spring: 10000
     damper: 1000
     targetPosition: 0.5
-  m_SuspensionDistance: 0.4
+  m_SuspensionDistance: 0.8
   m_ForceAppPointDistance: 0.9647267
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -746,7 +747,7 @@ WheelCollider:
     spring: 10000
     damper: 1000
     targetPosition: 0.5
-  m_SuspensionDistance: 0.4
+  m_SuspensionDistance: 0.8
   m_ForceAppPointDistance: 0.9647267
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -808,7 +809,7 @@ WheelCollider:
     spring: 10000
     damper: 1000
     targetPosition: 0.5
-  m_SuspensionDistance: 0.4
+  m_SuspensionDistance: 0.8
   m_ForceAppPointDistance: 0.9647267
   m_Mass: 20
   m_WheelDampingRate: 0.25
@@ -870,7 +871,7 @@ WheelCollider:
     spring: 10000
     damper: 1000
     targetPosition: 0.5
-  m_SuspensionDistance: 0.4
+  m_SuspensionDistance: 0.8
   m_ForceAppPointDistance: 0.9647267
   m_Mass: 20
   m_WheelDampingRate: 0.25

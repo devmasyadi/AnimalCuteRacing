@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PanelCarSelection : MonoBehaviour
 {
+    public Text txtCoin;
     public ScrollRect scrollViewCarSelection;
     public ScrollRect scrollViewUpgradeCar;
     public Button btncredits;
@@ -23,6 +24,10 @@ public class PanelCarSelection : MonoBehaviour
         btnTutorial.onClick.AddListener(()=> SceneManager.LoadScene("Tutorial"));
         setUpButtonCars();
         panelCredits.SetActive(false);
+
+        if(!PlayerPrefs.HasKey("Coin"))
+            PlayerPrefs.SetInt("Coin", 0);
+        SetCoin(PlayerPrefs.GetInt("Coin"));
     }
 
     // Update is called once per frame
@@ -52,6 +57,11 @@ public class PanelCarSelection : MonoBehaviour
             btnBack.gameObject.SetActive(true);
             //  btnBack.transform.GetChild(0).GetComponent<Text>().text = "Back";
         }
+    }
+
+    void SetCoin(int coin)
+    {
+        txtCoin.text = coin.ToString();
     }
 
     void NextButton()

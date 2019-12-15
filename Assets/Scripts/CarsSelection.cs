@@ -15,6 +15,7 @@ public class CarsSelection : MonoBehaviour
     public static CarsSelection instance;
     public GameObject spawnCharMenu;
     public GameObject spawnVehicleMenu;
+    public GameObject carSelected;
     public List<DataCarSelection> dataCarSelections;
 
 
@@ -30,6 +31,8 @@ public class CarsSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(!PlayerPrefs.HasKey("Player"))
+            PlayerPrefs.SetString("Player", dataCarSelections[0].vehicle.name);
 
     }
 
@@ -81,6 +84,7 @@ public class CarsSelection : MonoBehaviour
             if (item.id.Equals(id))
             {
                 var vehicle = Instantiate(item.vehicle, parentVehicle);
+                carSelected = vehicle;
                 var carController = vehicle.GetComponent<CarController>();
                 carController.isUsInput = isUsInput;
                 carController.positionZ = positionZ;

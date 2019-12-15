@@ -12,7 +12,7 @@ public class PanelSelectMode : MonoBehaviour
     void Start()
     {
         btnSingleMode.onClick.AddListener(()=>SingleMode());
-        btnBack.onClick.AddListener(()=>gameObject.SetActive(false));
+        btnBack.onClick.AddListener(()=>MainMenuManager.instance.ShowPanelLevelSelection());
     }
 
     // Update is called once per frame
