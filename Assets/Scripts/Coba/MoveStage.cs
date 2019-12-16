@@ -14,6 +14,7 @@ public class MoveStage : MonoBehaviour
     {
         // Menset nextSceneLoad bernilai lebih 1 dari index pada build project
         nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
+
     }
 
     // Update is called once per frame
