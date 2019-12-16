@@ -21,13 +21,13 @@ public class MusicManager : MonoBehaviour
         if (instance != null && instance != this)
             Destroy(gameObject);
         else
-            DontDestroyOnLoad(gameObject);
+            instance = this;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        DontDestroyOnLoad(gameObject);
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
     }
@@ -50,5 +50,19 @@ public class MusicManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public AudioClip GetAudioClip(string nameAudio)
+    {
+        AudioClip resAudio = null;
+        foreach(var item in dataMusics)
+        {
+            if(item.nameMusic.Equals(nameAudio))
+            {
+                resAudio = item.audioClip;
+                break;
+            }
+        }
+        return resAudio;
     }
 }

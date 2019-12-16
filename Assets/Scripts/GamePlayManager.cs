@@ -29,15 +29,17 @@ public class GamePlayManager : MonoBehaviour
     private void Awake()
     {
         if (CarsSelection.instance != null)
-            CarsSelection.instance.BaseSpawnModelById(PlayerPrefs.GetString("Player"), true, parentPlayer, -11.8f);
+            CarsSelection.instance.BaseSpawnModelById(PlayerPrefs.GetString("Player"), true, parentPlayer, parentPlayer.transform.position.z);
 
-        nameWorld = PlayerPrefs.GetString("nameWorld");
-        indexLevel = PlayerPrefs.GetInt("indexLevel");
+        if (WorldsSelection.instance != null)
+        {
+            nameWorld = PlayerPrefs.GetString("nameWorld");
+            indexLevel = PlayerPrefs.GetInt("indexLevel");
+            WorldsSelection.instance.SpawnLevelByIndex(nameWorld, indexLevel, parentLevel);
 
-        // Debug.Log("nameWOrld : " + nameWorld);
-        // Debug.Log("indexLevel : " + indexLevel);
+        }
 
-        WorldsSelection.instance.SpawnLevelByIndex(nameWorld, indexLevel, parentLevel);
+
     }
 
     // Start is called before the first frame update
@@ -66,7 +68,8 @@ public class GamePlayManager : MonoBehaviour
     {
         state = State.play;
         SetUpBasePanel(false, false, false);
-        MusicManager.instance.PlayAudio("MusicWorld_1");
+        if(MusicManager.instance!=null)
+            MusicManager.instance.PlayAudio("MusicWorld_1");
     }
 
     public void ShowPanelResume()

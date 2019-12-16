@@ -78,7 +78,10 @@ public class CarsSelection : MonoBehaviour
     public void BaseSpawnModelById(string id, bool isUsInput, Transform parentVehicle, float positionZ)
     {
         if (parentVehicle.childCount > 0)
-            Destroy(parentVehicle.GetChild(0).gameObject);
+        {
+            foreach(var item in parentVehicle.GetComponentsInChildren<CarController>())
+                Destroy(item.gameObject);
+        }
         foreach (var item in dataCarSelections)
         {
             if (item.id.Equals(id))
