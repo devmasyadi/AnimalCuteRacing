@@ -13,6 +13,7 @@ public class PanelCarSelection : MonoBehaviour
     public Button btnTutorial;
     public Button btnBack;
     public Button btnNext;
+    public Button btnUnlock;
     public GameObject panelCredits;
     // Start is called before the first frame update
     void Start()
@@ -21,13 +22,15 @@ public class PanelCarSelection : MonoBehaviour
         btnNext.onClick.AddListener(() => NextButton());
         btnBack.onClick.AddListener(() => BackButton());
         btncredits.onClick.AddListener(() => panelCredits.SetActive(true));
-        btnTutorial.onClick.AddListener(()=> SceneManager.LoadScene("Tutorial"));
+        btnTutorial.onClick.AddListener(() => SceneManager.LoadScene("Tutorial"));
         setUpButtonCars();
         panelCredits.SetActive(false);
 
-        if(!PlayerPrefs.HasKey("Coin"))
+        if (!PlayerPrefs.HasKey("Coin"))
             PlayerPrefs.SetInt("Coin", 0);
         SetCoin(PlayerPrefs.GetInt("Coin"));
+
+        SetLockUnlocokCar();
     }
 
     // Update is called once per frame
@@ -39,6 +42,20 @@ public class PanelCarSelection : MonoBehaviour
     private void OnEnable()
     {
 
+    }
+
+    void SetLockUnlocokCar()
+    {
+        var content = scrollViewCarSelection.content;
+        var index=0;
+        foreach(var item in content.GetComponentsInChildren<ItemLock>())
+        {
+            var isLock = CarsSelection.instance.GetListLockCar().Contains(item.gameObject.name) ? true : false ;
+            item.panelLock.SetActive(isLock);
+            item.txtLevel.text = CarsSelection.instance.dataCarSelections[index].price.ToString();
+            index++;
+            // Debug.Log(item.gameObject.name+" : "+isLock);
+        }
     }
 
     void IsShowScrollViewCarSelection(bool isShowCarSelect)

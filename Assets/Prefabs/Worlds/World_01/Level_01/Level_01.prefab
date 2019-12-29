@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 899238577141931373}
   - component: {fileID: 899238577140801453}
   - component: {fileID: 2441854122387804007}
+  - component: {fileID: 8851421915969127862}
   m_Layer: 0
   m_Name: jump_obstacle_stick
   m_TagString: DeadTrigger
@@ -303,11 +304,23 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899238577142792555}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.7810995, y: 0.029936537, z: 0.034566563}
   m_Center: {x: -0.00000011920929, y: -0.0000009536743, z: -0.00000023841858}
+--- !u!114 &8851421915969127862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899238577142792555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306fdbbc865e141bd83e0def7c80a293, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &899238577142792557
 GameObject:
   m_ObjectHideFlags: 0
@@ -410,7 +423,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899238577142792559}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 240.2, y: 12.5, z: -0}
+  m_LocalPosition: {x: 164.93, y: 15.76, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 899238577142701389}
@@ -19651,7 +19664,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4757458525075609329}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 383.8, y: 24, z: 2.2}
+  m_LocalPosition: {x: 426.7, y: 13.2, z: 2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4757458526538246769}
@@ -19906,7 +19919,6 @@ GameObject:
   - component: {fileID: 414807300773990576}
   - component: {fileID: 7736442424373682448}
   - component: {fileID: 8878992036808321570}
-  - component: {fileID: 6754186754199741956}
   m_Layer: 0
   m_Name: item_coin_1pts
   m_TagString: ItemCoin
@@ -19989,22 +20001,6 @@ CapsuleCollider:
   m_Height: 0.15526181
   m_Direction: 1
   m_Center: {x: -0.0000038146973, y: 0.00000030174846, z: 0}
---- !u!114 &6754186754199741956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5199226791965885003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82960e95c966d4428b389855dc761ec2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  valueCoin: 10
-  effect: {fileID: 3171671241190972312}
-  soundCoin: {fileID: 8300000, guid: a70ba37d760224157a409d25cda15f45, type: 3}
-  speedRotation: 100
 --- !u!1 &5775418306742158147
 GameObject:
   m_ObjectHideFlags: 0
@@ -20017,7 +20013,6 @@ GameObject:
   - component: {fileID: 2787418442484068176}
   - component: {fileID: 4863523143787969906}
   - component: {fileID: 2190277661338104397}
-  - component: {fileID: 3214642947427042213}
   m_Layer: 0
   m_Name: item_coin_1pts
   m_TagString: ItemCoin
@@ -20100,22 +20095,6 @@ CapsuleCollider:
   m_Height: 0.15526181
   m_Direction: 1
   m_Center: {x: -0.0000038146973, y: 0.00000030174846, z: 0}
---- !u!114 &3214642947427042213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5775418306742158147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82960e95c966d4428b389855dc761ec2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  valueCoin: 10
-  effect: {fileID: 1040134373669429641}
-  soundCoin: {fileID: 8300000, guid: a70ba37d760224157a409d25cda15f45, type: 3}
-  speedRotation: 100
 --- !u!1 &6023322355192259306
 GameObject:
   m_ObjectHideFlags: 0
@@ -29770,7 +29749,6 @@ GameObject:
   - component: {fileID: 6786106696059816830}
   - component: {fileID: 6786106696060815806}
   - component: {fileID: 6786106696062849474}
-  - component: {fileID: 6786106696062849477}
   m_Layer: 0
   m_Name: item_coin_1pts
   m_TagString: ItemCoin
@@ -29853,22 +29831,6 @@ CapsuleCollider:
   m_Height: 0.15526181
   m_Direction: 1
   m_Center: {x: -0.0000038146973, y: 0.00000030174846, z: 0}
---- !u!114 &6786106696062849477
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6786106696062752638}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82960e95c966d4428b389855dc761ec2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  valueCoin: 10
-  effect: {fileID: 2619986459858579919}
-  soundCoin: {fileID: 8300000, guid: a70ba37d760224157a409d25cda15f45, type: 3}
-  speedRotation: 100
 --- !u!1 &7252346034517770602
 GameObject:
   m_ObjectHideFlags: 0

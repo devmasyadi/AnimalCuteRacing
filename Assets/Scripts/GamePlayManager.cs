@@ -35,6 +35,7 @@ public class GamePlayManager : MonoBehaviour
         {
             nameWorld = PlayerPrefs.GetString("nameWorld");
             indexLevel = PlayerPrefs.GetInt("indexLevel");
+            Debug.Log(nameWorld);
             WorldsSelection.instance.SpawnLevelByIndex(nameWorld, indexLevel, parentLevel);
 
         }
@@ -83,6 +84,12 @@ public class GamePlayManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void NextLevel()
+    {
+        PlayerPrefs.SetInt("indexLevel", PlayerPrefs.GetInt("indexLevel")+1);
+        RestartGamePlay();
+    }
+
     public void RestartGamePlay()
     {
         SceneManager.LoadScene("GamePlay");
@@ -106,6 +113,7 @@ public class GamePlayManager : MonoBehaviour
     {
         state = State.finish;
         DriverController.instance.SetAnimWin();
+        SetUpBasePanel(false, false, true);
         Debug.Log("Finish");
     }
 }

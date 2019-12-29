@@ -62,7 +62,6 @@ public class DriverController : MonoBehaviour
             transform.parent.DetachChildren();
             DoRagdoll(true);
         }
-        Debug.Log("Layer mask : "+collision.gameObject.layer);
         Debug.Log("kena : "+collision.gameObject.tag);
     }
 

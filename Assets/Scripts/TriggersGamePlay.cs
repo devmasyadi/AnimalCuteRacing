@@ -39,9 +39,13 @@ public class TriggersGamePlay : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnCollisionEnter(Collision collision)
     {
-        // GamePlayManager.instance.DeadByTrigger();
+        // if(collision.gameObject.tag.Equals("DeadTrigger"))
+        // {
+        //     GamePlayManager.instance.DeadByTrigger();
+        // }
+        
         // Debug.Log("kena : "+other.gameObject.tag);
     }
 

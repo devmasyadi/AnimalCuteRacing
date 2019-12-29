@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [System.Serializable]
 public class DataCarSelection
 {
     public string id;
+    public int price;
     public GameObject character;
     public GameObject vehicle;
 }
@@ -15,7 +17,6 @@ public class CarsSelection : MonoBehaviour
     public static CarsSelection instance;
     public GameObject spawnCharMenu;
     public GameObject spawnVehicleMenu;
-    public GameObject carSelected;
     public List<DataCarSelection> dataCarSelections;
 
 
@@ -26,14 +27,46 @@ public class CarsSelection : MonoBehaviour
         else
             instance = this;
         DontDestroyOnLoad(gameObject);
+
     }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        if(!PlayerPrefs.HasKey("Player"))
-            PlayerPrefs.SetString("Player", dataCarSelections[0].vehicle.name);
+        // PlayerPrefs.DeleteAll();
+        InitFirstLockCar();
 
+    }
+
+
+    void InitFirstLockCar()
+    {
+
+        if (!PlayerPrefs.HasKey("hasLockCar"))
+        {
+            List<string> listCar = new List<string>();
+
+            foreach (var item in dataCarSelections)
+                listCar.Add(item.id);
+
+            PlayerPrefsX.SetStringArray("lockCar", listCar.ToArray());
+            PlayerPrefs.SetInt("hasLockCar", 1);
+            UnlockCar(dataCarSelections[0].id);
+        }
+    }
+
+    public void UnlockCar(string id)
+    {
+        var listCar = PlayerPrefsX.GetStringArray("lockCar").ToList();
+        listCar.Remove(id);
+        PlayerPrefsX.SetStringArray("lockCar", listCar.ToArray());
+
+    }
+
+    public List<string> GetListLockCar()
+    {
+        return PlayerPrefsX.GetStringArray("lockCar").ToList();
     }
 
     void HandleNull()
@@ -43,6 +76,7 @@ public class CarsSelection : MonoBehaviour
         if (spawnVehicleMenu == null)
             spawnVehicleMenu = GameObject.Find("SpawnVehicle");
     }
+
 
     public void FirstSpawnModelById(string id)
     {
@@ -79,7 +113,7 @@ public class CarsSelection : MonoBehaviour
     {
         if (parentVehicle.childCount > 0)
         {
-            foreach(var item in parentVehicle.GetComponentsInChildren<CarController>())
+            foreach (var item in parentVehicle.GetComponentsInChildren<CarController>())
                 Destroy(item.gameObject);
         }
         foreach (var item in dataCarSelections)
@@ -87,7 +121,6 @@ public class CarsSelection : MonoBehaviour
             if (item.id.Equals(id))
             {
                 var vehicle = Instantiate(item.vehicle, parentVehicle);
-                carSelected = vehicle;
                 var carController = vehicle.GetComponent<CarController>();
                 carController.isUsInput = isUsInput;
                 carController.positionZ = positionZ;
