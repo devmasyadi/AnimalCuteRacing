@@ -88,8 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3265af70c9e34c6193330a829455b26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLocked: 0
-  imgLock: {fileID: 6950659709136657762}
+  isLock: 0
+  price: 0
+  panelLock: {fileID: 6950659709136657760}
   txtLevel: {fileID: 8270788835634624833}
 --- !u!1 &6950659709136657760
 GameObject:

@@ -33,7 +33,7 @@ public class PanelCarSelection : MonoBehaviour
             PlayerPrefs.SetInt("Coin", 0);
         
         // PlayerPrefs.DeleteAll();
-        PlayerPrefs.SetInt("Coin", 99999);
+        // PlayerPrefs.SetInt("Coin", 99999);
         SetCoin(PlayerPrefs.GetInt("Coin"));
 
         SetLockUnlocokCar();

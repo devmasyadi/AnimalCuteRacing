@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 [System.Serializable]
 public class DataWorldSelection
@@ -26,12 +27,40 @@ public class WorldsSelection : MonoBehaviour
     void Start()
     {
         DontDestroyOnLoad(gameObject);
+        InitFirstLockWorld();
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    void InitFirstLockWorld()
+    {
+        if(!PlayerPrefs.HasKey("hasLockWorld"))
+        {
+            var listWorld = new List<string>();
+            foreach(var item in worldSelections)
+            {
+                listWorld.Add(item.nameWorld);
+            }
+            PlayerPrefsX.SetStringArray("lockWorld", listWorld.ToArray());
+            UnlockWorld(worldSelections[0].nameWorld);
+            PlayerPrefs.SetInt("hasLockWorld", 1);
+        }
+    }
+
+    public void UnlockWorld(string nameWorld)
+    {
+        var listWorld = PlayerPrefsX.GetStringArray("lockWorld").ToList();
+        listWorld.Remove(nameWorld);
+        PlayerPrefsX.SetStringArray("lockWorld", listWorld.ToArray());
+    }
+
+    public List<string> GetListLockWorld()
+    {
+        return PlayerPrefsX.GetStringArray("lockWorld").ToList();
     }
 
     public void SpawnLevelByIndex(string nameWorld, int indexLevel, Transform parentLevel)
