@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class ItemLock : MonoBehaviour
 {
+    public bool isLock;
+    public int price;
     public GameObject panelLock;
     public Text txtLevel;
     // Start is called before the first frame update

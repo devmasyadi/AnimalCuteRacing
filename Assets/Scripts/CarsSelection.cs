@@ -34,7 +34,7 @@ public class CarsSelection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // PlayerPrefs.DeleteAll();
+
         InitFirstLockCar();
 
     }
@@ -82,6 +82,16 @@ public class CarsSelection : MonoBehaviour
     {
         HandleNull();
         SpawnModelMainMenu(id);
+        var content = PanelCarSelection.instance.scrollViewCarSelection.content;
+        foreach (var item in content.GetComponentsInChildren<ItemLock>())
+        {
+            if (item.gameObject.name.Equals(id))
+            {
+                PanelCarSelection.instance.IsShowBtnUnlock(item.isLock);
+                // Debug.Log(item);
+            }
+
+        }
     }
 
     /* Old

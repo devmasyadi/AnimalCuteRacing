@@ -9,7 +9,6 @@ public class MainMenuManager : MonoBehaviour
     public GameObject panelWorldSelection;
     public GameObject panelLevelSelection;
     public GameObject panelSelectMode;
-    public GameObject panelDialogWindow;
 
     // Start is called before the first frame update
     void Start()
