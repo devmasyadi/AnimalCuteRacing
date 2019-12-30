@@ -97,7 +97,7 @@ public class CarController : MonoBehaviour
         {
             foreach (var wheel in throttleWheels)
             {
-                if(wheelDriveType == WheelDriveType.REAR_WD || wheelDriveType == WheelDriveType.FOUR_WD)
+                if (wheelDriveType == WheelDriveType.REAR_WD || wheelDriveType == WheelDriveType.FOUR_WD)
                     wheel.motorTorque = motorTorque * powerEngine;
                 SetPosRotObjWheel(wheel);
                 breakWheel(wheel);
@@ -109,11 +109,15 @@ public class CarController : MonoBehaviour
         {
             foreach (var wheel in steerWheels)
             {
-                 if(wheelDriveType == WheelDriveType.FRONT_WD || wheelDriveType == WheelDriveType.FOUR_WD)
+                if (wheelDriveType == WheelDriveType.FRONT_WD || wheelDriveType == WheelDriveType.FOUR_WD)
+                {
                     wheel.motorTorque = motorTorque * powerEngine;
+                    breakWheel(wheel);
+                }
+                
                 wheel.steerAngle = steerAngle * maxTurn;
                 SetPosRotObjWheel(wheel);
-                breakWheel(wheel);
+
                 if (wheel.isGrounded)
                     stableCar();
             }
