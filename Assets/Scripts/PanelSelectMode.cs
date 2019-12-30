@@ -11,14 +11,18 @@ public class PanelSelectMode : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        btnSingleMode.onClick.AddListener(()=>SingleMode());
-        btnBack.onClick.AddListener(()=>MainMenuManager.instance.ShowPanelLevelSelection());
+        btnSingleMode.onClick.AddListener(() => SingleMode());
+        btnBack.onClick.AddListener(() => MainMenuManager.instance.ShowPanelLevelSelection());
+        foreach (var btn in GetComponentsInChildren<Button>(true))
+        {
+            btn.onClick.AddListener(() => MusicManager.instance.ClickAudio());
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void SingleMode()

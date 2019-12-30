@@ -24,19 +24,30 @@ public class PanelCarSelection : MonoBehaviour
         IsShowScrollViewCarSelection(true);
         btnNext.onClick.AddListener(() => NextButton());
         btnBack.onClick.AddListener(() => BackButton());
-        btncredits.onClick.AddListener(() => panelCredits.SetActive(true));
-        btnTutorial.onClick.AddListener(() => SceneManager.LoadScene("Tutorial"));
+        btncredits.onClick.AddListener(delegate
+        {
+            panelCredits.SetActive(true);
+        });
+        btnTutorial.onClick.AddListener(delegate
+        {
+            SceneManager.LoadScene("Tutorial");
+        });
         setUpButtonCars();
         panelCredits.SetActive(false);
-
         if (!PlayerPrefs.HasKey("Coin"))
             PlayerPrefs.SetInt("Coin", 0);
-        
+
         // PlayerPrefs.DeleteAll();
         // PlayerPrefs.SetInt("Coin", 99999);
         SetCoin(PlayerPrefs.GetInt("Coin"));
 
         SetLockUnlocokCar();
+
+        foreach (var btn in GetComponentsInChildren<Button>(true))
+        {
+            btn.onClick.AddListener(() => MusicManager.instance.ClickAudio());
+        }
+
     }
 
     // Update is called once per frame
@@ -98,9 +109,9 @@ public class PanelCarSelection : MonoBehaviour
     bool BuyCar(int price, GameObject objLock, string nameCar)
     {
         var currCoins = PlayerPrefs.GetInt("Coin");
-        if(currCoins>=price)
+        if (currCoins >= price)
         {
-            currCoins-=price;
+            currCoins -= price;
             PlayerPrefs.SetInt("Coin", currCoins);
             PanelDialogWindow.instance.ShowDialog("Congrulation", "You have successfully purchased an item");
             SetCoin(currCoins);
@@ -157,10 +168,11 @@ public class PanelCarSelection : MonoBehaviour
                     {
                         btnUnlock.onClick.AddListener(delegate
                         {
-                            PanelDialogWindow.instance.ShowDialog("Confirm", "Do you sure want to buy this item wiht " + itemLock.price + " coins ?", delegate{
+                            PanelDialogWindow.instance.ShowDialog("Confirm", "Do you sure want to buy this item wiht " + itemLock.price + " coins ?", delegate
+                            {
                                 var isBuy = BuyCar(itemLock.price, itemLock.panelLock, item.gameObject.name);
                                 itemLock.isLock = false;
-                            } );
+                            });
                         });
                     }
                     else

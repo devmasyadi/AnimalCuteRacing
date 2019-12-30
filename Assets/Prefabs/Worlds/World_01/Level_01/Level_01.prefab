@@ -423,7 +423,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 899238577142792559}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 164.93, y: 15.76, z: -0}
+  m_LocalPosition: {x: 182.45, y: 18.08, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 899238577142701389}
@@ -10420,7 +10420,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -10473,7 +10473,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -19573,7 +19573,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4757458524919601488}
   m_LocalRotation: {x: -0.5000001, y: 0.4999999, z: 0.4999999, w: 0.5000001}
-  m_LocalPosition: {x: 67.86, y: -1.8800001, z: 0}
+  m_LocalPosition: {x: 86.5, y: -5.5, z: 0}
   m_LocalScale: {x: 2.540001, y: 2.540002, z: 2.5400019}
   m_Children: []
   m_Father: {fileID: 4757458526944955845}
@@ -19651,7 +19651,7 @@ GameObject:
   - component: {fileID: 4757458525077866545}
   m_Layer: 0
   m_Name: LineFinish
-  m_TagString: Untagged
+  m_TagString: LineFinish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58593,6 +58593,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: World_01_level_01_prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 7490861125316194038, guid: 62b435c25af1d401b8a6212bcff31c34,
+        type: 3}
+      propertyPath: m_TagString
+      value: DeadTrigger
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62b435c25af1d401b8a6212bcff31c34, type: 3}

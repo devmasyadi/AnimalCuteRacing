@@ -6,14 +6,18 @@ using UnityEngine.UI;
 public class PanelGamePlayManager : MonoBehaviour
 {
     public static PanelGamePlayManager instance;
+    public Text txtLevel;
     public Text txtCoin;
+    public Text txtDistance;
     public Button btnResume;
     public Image imgSliderFuel;
     Coroutine corFuelSystem;
+    GamePlayManager gamePlayManager;
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
+        gamePlayManager = FindObjectOfType<GamePlayManager>();
         SetUpButton();
         corFuelSystem = StartCoroutine(FuelSystem(CarController.instance.fuel));
         SetCoin(PlayerPrefs.GetInt("Coin"));
@@ -33,7 +37,7 @@ public class PanelGamePlayManager : MonoBehaviour
     IEnumerator FuelSystem(float fuel)
     {
         var timeLeft = fuel;
-        while (timeLeft > 0)
+        while (timeLeft > 0 && gamePlayManager.state == GamePlayManager.State.play)
         {
             timeLeft -= Time.deltaTime;
             imgSliderFuel.fillAmount = timeLeft / fuel;
@@ -46,6 +50,16 @@ public class PanelGamePlayManager : MonoBehaviour
         }
     }
 
+    public void SetTxtLevel(int level)
+    {
+        txtLevel.text = "Level "+level;
+    }
+
+    public void SetTextDistance(string distance)
+    {
+        txtDistance.text = distance;
+    }
+    
     public void ResetFuelSystem(float fuel)
     {
         StopCoroutine(corFuelSystem);

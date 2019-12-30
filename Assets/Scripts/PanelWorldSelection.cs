@@ -14,6 +14,10 @@ public class PanelWorldSelection : MonoBehaviour
         btnBack.onClick.AddListener(() => MainMenuManager.instance.ShowPanelCarSelection());
         setUpBtnContent();
         setUpLockUnlockWorld();
+        foreach(var btn in GetComponentsInChildren<Button>(true))
+        {
+            btn.onClick.AddListener(()=>MusicManager.instance.ClickAudio());
+        }
     }
 
     void setUpLockUnlockWorld()
@@ -42,7 +46,7 @@ public class PanelWorldSelection : MonoBehaviour
             itemContent.onClick.RemoveAllListeners();
             itemContent.onClick.AddListener(delegate
             {
-                Debug.Log(itemLock.isLock);
+                // Debug.Log(itemLock.isLock);
                 if (itemLock.isLock)
                 {
                     var index = WorldsSelection.instance.GetListLockWorld().IndexOf(itemLock.gameObject.name);
@@ -51,6 +55,7 @@ public class PanelWorldSelection : MonoBehaviour
                 else
                 {
                     MainMenuManager.instance.ShowPanelLevelSelection();
+                    MainMenuManager.instance.panelLevelSelection.GetComponent<PanelLevelSelection>().InitFirstLockLevel();
                     MainMenuManager.instance.panelLevelSelection.GetComponent<PanelLevelSelection>().SetPanelSelection(itemContent.gameObject.name);
                 }
             });

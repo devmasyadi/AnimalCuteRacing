@@ -17,6 +17,10 @@ public class PanelDialogWindow : MonoBehaviour
     {
         instance = this;
         panelDialog.SetActive(false);
+        foreach (var btn in GetComponentsInChildren<Button>(true))
+        {
+            btn.onClick.AddListener(() => MusicManager.instance.ClickAudio());
+        }
     }
 
     // Update is called once per frame

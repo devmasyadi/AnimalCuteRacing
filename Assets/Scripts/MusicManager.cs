@@ -15,6 +15,7 @@ public class MusicManager : MonoBehaviour
     public List<dataMusic> dataMusics;
 
     AudioSource audioSource;
+    AudioSourceEffek audioSourceEffek;
 
     void Awake()
     {
@@ -30,6 +31,14 @@ public class MusicManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
+        if(audioSourceEffek==null)
+            audioSourceEffek = FindObjectOfType<AudioSourceEffek>();
+        if(audioSourceEffek.GetComponent<AudioSource>()==null)
+        {
+             audioSourceEffek.gameObject.AddComponent<AudioSource>();
+             audioSourceEffek.GetComponent<AudioSource>().playOnAwake = false;
+        }
+           
     }
 
     // Update is called once per frame
@@ -64,5 +73,12 @@ public class MusicManager : MonoBehaviour
             }
         }
         return resAudio;
+    }
+
+    public void ClickAudio()
+    {
+        var audioSource = audioSourceEffek.GetComponent<AudioSource>();
+        audioSource.clip = GetAudioClip("Click");
+        audioSource.Play();
     }
 }

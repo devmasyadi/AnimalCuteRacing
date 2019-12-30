@@ -19,11 +19,10 @@ public class PanelLevelSelection : MonoBehaviour
     {
         instance = this;
         btnBack.onClick.AddListener(() => MainMenuManager.instance.ShowPanelWorldSelection());
-        InitFirstLockLevel();
 
-        foreach (var item in GetListLockLevel("World 01"))
+        foreach (var btn in GetComponentsInChildren<Button>(true))
         {
-            Debug.Log(item);
+            btn.onClick.AddListener(() => MusicManager.instance.ClickAudio());
         }
 
     }
@@ -34,7 +33,7 @@ public class PanelLevelSelection : MonoBehaviour
 
     }
 
-    private void InitFirstLockLevel()
+    public void InitFirstLockLevel()
     {
         if (!PlayerPrefs.HasKey("lockLevel"))
         {
@@ -50,7 +49,7 @@ public class PanelLevelSelection : MonoBehaviour
                 PlayerPrefsX.SetIntArray("levelLocked" + item.nameWorld, listItem.ToArray());
             }
 
-            UnlockLevel("World 01", 0);
+            UnlockLevel(WorldsSelection.instance.worldSelections[0].nameWorld, 0);
             PlayerPrefs.SetInt("lockLevel", 1);
         }
 
@@ -67,6 +66,14 @@ public class PanelLevelSelection : MonoBehaviour
     {
         return PlayerPrefsX.GetIntArray("levelLocked" + nameWorld).ToList();
     }
+
+    // void setLockUnlockLevelSelection()
+    // {
+    //     foreach(var item in parentContent.GetComponentsInChildren<ItemLock>())
+    //     {
+    //         var islocked = GetListLockLevel().Contains(item.gameObject.name);
+    //     }
+    // }
 
     public void SetPanelSelection(string nameWorld)
     {

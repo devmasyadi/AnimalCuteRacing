@@ -15,6 +15,7 @@ TagManager:
   - DeadTrigger
   - Driver
   - Ground
+  - LineStart
   layers:
   - Default
   - TransparentFX

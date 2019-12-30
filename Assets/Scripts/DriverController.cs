@@ -10,8 +10,10 @@ public class DriverController : MonoBehaviour
     string BENSIN_HABIS_KEY = "bensinHabis";
     string MENANG_KEY = "menang";
     string NGE_DRIVE_KEY = "ngeDrive";
+    bool isDead;
     Animator animator;
     Rigidbody rb;
+
 
     public Collider mainCollider;
     Collider[] allCollider;
@@ -19,10 +21,26 @@ public class DriverController : MonoBehaviour
     void Start()
     {
         instance = this;
+        isDead = false;
         allCollider = GetComponentsInChildren<Collider>(true);
         animator = GetComponent<Animator>();
         // rb = GetComponent<Rigidbody>();
         DoRagdoll(false);
+
+        // if(CameraGamePlayManager.instance!=null)
+        // {
+        //     Instantiate(CameraGamePlayManager.instance.cameraGameOver, transform);
+        // }
+    }
+
+    void Update()
+    {
+        if (!isDead)
+        {
+            transform.position = transform.parent.position;
+            transform.rotation = transform.parent.rotation;
+        }
+
     }
 
     public void SetOnGamePlay(float ngeDrive)
@@ -58,11 +76,20 @@ public class DriverController : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("DeadTrigger"))
         {
+            // Time.timeScale = 0.1f;
             Debug.Log("mati");
-            transform.parent.DetachChildren();
-            DoRagdoll(true);
+            isDead= true;
+            GamePlayManager.instance.DeadByTrigger();
+            // transform.parent.DetachChildren();
+            // CameraGamePlayManager.instance.cameraGameOver.gameObject.SetActive(true);
+            // CameraGamePlayManager.instance.cameraGameOver.transform.position = transform.position;
+            // DoRagdoll(true);
         }
-        Debug.Log("kena : "+collision.gameObject.tag);
+        if(collision.gameObject.tag.Equals(""))
+        {
+
+        }
+        // Debug.Log("kena : "+collision.gameObject.tag);
     }
 
 

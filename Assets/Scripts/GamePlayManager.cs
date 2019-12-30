@@ -24,6 +24,11 @@ public class GamePlayManager : MonoBehaviour
     GameObject player;
     string nameWorld;
     int indexLevel;
+    Transform lineFinish;
+    public Transform lineStart;
+    float currentMeter;
+    float distance;
+
 
 
     private void Awake()
@@ -37,10 +42,7 @@ public class GamePlayManager : MonoBehaviour
             indexLevel = PlayerPrefs.GetInt("indexLevel");
             Debug.Log(nameWorld);
             WorldsSelection.instance.SpawnLevelByIndex(nameWorld, indexLevel, parentLevel);
-
         }
-
-
     }
 
     // Start is called before the first frame update
@@ -50,12 +52,44 @@ public class GamePlayManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         player.AddComponent<TriggersGamePlay>();
         PlayGame();
+        lineFinish = null;
+        lineStart = GameObject.FindGameObjectWithTag("LineStart").transform;
+        StartCoroutine(GetLineFinish());
+        StartCoroutine(GetDistance());
+
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    IEnumerator GetLineFinish()
+    {
+        while (lineFinish == null)
+        {
+            lineFinish = GameObject.FindGameObjectWithTag("LineFinish").transform;
+            yield return null;
+        }
+    }
+
+    IEnumerator GetDistance()
+    {
+        while (state == State.play && lineFinish != null)
+        {
+            distance = (lineFinish.transform.position - lineStart.transform.position).magnitude;
+            currentMeter = distance - (lineFinish.transform.position - player.transform.position).magnitude;
+            // Debug.Log("distance : "+currentMeter.ToString("F1"));
+            PanelGamePlayManager.instance.SetTextDistance(Mathf.Round(currentMeter) + " m / " + Mathf.Round(distance) + " m");
+            yield return null;
+        }
+        if (state == State.finish)
+        {
+            PanelGamePlayManager.instance.SetTextDistance(Mathf.Round(distance) + " m / " + Mathf.Round(distance) + " m");
+            Debug.Log("finish coy");
+            yield break;
+        }
     }
 
     void SetUpBasePanel(bool panelResume, bool panelGameOver, bool panelGameFinish)
@@ -69,8 +103,9 @@ public class GamePlayManager : MonoBehaviour
     {
         state = State.play;
         SetUpBasePanel(false, false, false);
-        if(MusicManager.instance!=null)
+        if (MusicManager.instance != null)
             MusicManager.instance.PlayAudio("MusicWorld_1");
+        PanelGamePlayManager.instance.SetTxtLevel(indexLevel + 1);
     }
 
     public void ShowPanelResume()
@@ -86,7 +121,16 @@ public class GamePlayManager : MonoBehaviour
 
     public void NextLevel()
     {
-        PlayerPrefs.SetInt("indexLevel", PlayerPrefs.GetInt("indexLevel")+1);
+        PlayerPrefs.SetInt("indexLevel", PlayerPrefs.GetInt("indexLevel") + 1);
+        if (indexLevel > PanelLevelSelection.instance.GetListLockLevel(nameWorld).Count - 1)
+        {
+
+        }
+        else
+        {
+
+        }
+        PanelLevelSelection.instance.UnlockLevel(nameWorld, indexLevel + 1);
         RestartGamePlay();
     }
 
