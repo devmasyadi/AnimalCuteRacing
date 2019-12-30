@@ -36,12 +36,12 @@ public class CarController : MonoBehaviour
     float motorTorque;
     float steerAngle;
     ParticleSystem smoke;
-    float minEmitSmoke = 6f;
-    float maxEmitSmoke = 16f;
     float minSizeSmoke = 1.5f;
     float maxSizeSmoke = 6f;
     Rigidbody _rigidbody;
     AudioSource audioSource;
+    [HideInInspector]
+    public bool isGrounded;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +56,7 @@ public class CarController : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
         audioSource.loop = true;
+        isGrounded = false;
         PlaySoundEngine();
     }
 
@@ -101,8 +102,13 @@ public class CarController : MonoBehaviour
                     wheel.motorTorque = motorTorque * powerEngine;
                 SetPosRotObjWheel(wheel);
                 breakWheel(wheel);
+
                 if (wheel.isGrounded)
-                    stableCar();
+                {
+                    if (GamePlayManager.instance != null && GamePlayManager.instance.state == GamePlayManager.State.play)
+                        stableCar();
+                    isGrounded = true;
+                }
             }
         }
         if (steerWheels.Count > 0)
@@ -114,12 +120,17 @@ public class CarController : MonoBehaviour
                     wheel.motorTorque = motorTorque * powerEngine;
                     breakWheel(wheel);
                 }
-                
+
                 wheel.steerAngle = steerAngle * maxTurn;
                 SetPosRotObjWheel(wheel);
 
                 if (wheel.isGrounded)
-                    stableCar();
+                {
+                    if (GamePlayManager.instance != null && GamePlayManager.instance.state == GamePlayManager.State.play)
+                        stableCar();
+                    isGrounded = true;
+                }
+
             }
         }
     }
@@ -192,6 +203,7 @@ public class CarController : MonoBehaviour
         audioSource.clip = soundEngine;
         audioSource.Play();
     }
+
 
     void SetSoundEngineSystem()
     {

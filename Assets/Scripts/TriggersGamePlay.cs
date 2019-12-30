@@ -18,7 +18,7 @@ public class TriggersGamePlay : MonoBehaviour
         {
             if (collider.tag.Equals("ItemGas"))
             {
-                collider.GetComponent<MoveTowardsUI>().Target = PanelGamePlayManager.instance.txtCoin.gameObject;
+                collider.GetComponent<MoveTowardsUI>().Target = PanelGamePlayManager.instance.iconCoin.gameObject;
                 collider.GetComponent<AudioSource>().Play();
                 PanelGamePlayManager.instance.ResetFuelSystem(CarController.instance.fuel);
             }

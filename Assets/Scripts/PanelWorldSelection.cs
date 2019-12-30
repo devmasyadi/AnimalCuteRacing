@@ -16,7 +16,7 @@ public class PanelWorldSelection : MonoBehaviour
         setUpLockUnlockWorld();
         foreach(var btn in GetComponentsInChildren<Button>(true))
         {
-            btn.onClick.AddListener(()=>MusicManager.instance.ClickAudio());
+            btn.onClick.AddListener(()=>AudioSourceEffek.instance.ButtonAudio());
         }
     }
 

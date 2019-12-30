@@ -29,8 +29,6 @@ public class GamePlayManager : MonoBehaviour
     float currentMeter;
     float distance;
 
-
-
     private void Awake()
     {
         if (CarsSelection.instance != null)
@@ -51,11 +49,11 @@ public class GamePlayManager : MonoBehaviour
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         player.AddComponent<TriggersGamePlay>();
-        PlayGame();
         lineFinish = null;
         lineStart = GameObject.FindGameObjectWithTag("LineStart").transform;
         StartCoroutine(GetLineFinish());
         StartCoroutine(GetDistance());
+        StartCoroutine(StartGame());
 
     }
 
@@ -99,6 +97,18 @@ public class GamePlayManager : MonoBehaviour
         this.panelGameFinish.SetActive(panelGameFinish);
     }
 
+    IEnumerator StartGame()
+    {
+        MusicManager.instance.StopAudio();
+        var carController = FindObjectOfType<CarController>();
+        yield return new WaitUntil(() => carController != null && carController.isGrounded);
+         StartCoroutine(PanelTextInfoGamePlay.instance.ShowPanelTextInfo("GO ... !!!!"));
+        yield return new WaitForSeconds(0.8f);
+        yield return StartCoroutine(AudioSourceEffek.instance.AudioStartGame());
+        Debug.Log(carController);
+        PlayGame();
+    }
+
     public void PlayGame()
     {
         state = State.play;
@@ -136,6 +146,7 @@ public class GamePlayManager : MonoBehaviour
 
     public void RestartGamePlay()
     {
+        MusicManager.instance.StopAudio();
         SceneManager.LoadScene("GamePlay");
     }
 

@@ -231,8 +231,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.26828262, y: 0.11208318, z: 0.40311584}
-  m_Center: {x: -0.0000011317061, y: 0.048879568, z: 0.012107118}
+  m_Size: {x: 0.26828262, y: 0.058923732, z: 0.40311584}
+  m_Center: {x: -0.0000011317061, y: 0.022299843, z: 0.012107118}
 --- !u!136 &9113973548160389669
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -243,10 +243,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.05277806
+  m_Radius: 0.05747717
   m_Height: 0.46920905
   m_Direction: 2
-  m_Center: {x: -0.0000011177344, y: 0.050555807, z: 0.0077108024}
+  m_Center: {x: -0.0000011177344, y: 0.055254918, z: 0.007710803}
 --- !u!1 &5133874871947928114
 GameObject:
   m_ObjectHideFlags: 0
@@ -845,6 +845,7 @@ MonoBehaviour:
   throttleWheels:
   - {fileID: 1822575291563715029}
   - {fileID: 4575883468961454617}
+  isGrounded: 0
 --- !u!1 &8169891227801304568
 GameObject:
   m_ObjectHideFlags: 0

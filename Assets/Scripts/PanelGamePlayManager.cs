@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PanelGamePlayManager : MonoBehaviour
 {
     public static PanelGamePlayManager instance;
+    public Transform iconCoin;
     public Text txtLevel;
     public Text txtCoin;
     public Text txtDistance;

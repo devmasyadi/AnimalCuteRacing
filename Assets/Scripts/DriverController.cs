@@ -5,14 +5,13 @@ using UnityEngine;
 public class DriverController : MonoBehaviour
 {
     public static DriverController instance;
-    string IS_IDLE_KEY = "isIdle";
+
     string IS_NGE_DRIVE_KEY = "isNgeDrive";
     string BENSIN_HABIS_KEY = "bensinHabis";
     string MENANG_KEY = "menang";
     string NGE_DRIVE_KEY = "ngeDrive";
     bool isDead;
     Animator animator;
-    Rigidbody rb;
 
 
     public Collider mainCollider;
@@ -20,17 +19,14 @@ public class DriverController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         instance = this;
         isDead = false;
         allCollider = GetComponentsInChildren<Collider>(true);
         animator = GetComponent<Animator>();
-        // rb = GetComponent<Rigidbody>();
+        
         DoRagdoll(false);
 
-        // if(CameraGamePlayManager.instance!=null)
-        // {
-        //     Instantiate(CameraGamePlayManager.instance.cameraGameOver, transform);
-        // }
     }
 
     void Update()
@@ -65,10 +61,6 @@ public class DriverController : MonoBehaviour
             item.enabled = isRagdoll;
         mainCollider.enabled = !isRagdoll;
         animator.enabled = !isRagdoll;
-        // if (!isRagdoll)
-        //     rb.constraints = RigidbodyConstraints.FreezeAll;
-        // else
-        //     rb.constraints = RigidbodyConstraints.None;
 
     }
 
