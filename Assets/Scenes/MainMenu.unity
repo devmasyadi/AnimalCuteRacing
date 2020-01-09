@@ -1343,6 +1343,10 @@ MonoBehaviour:
     audioClip: {fileID: 8300000, guid: 2244d7bbbb7e8454185b41bf966043fb, type: 3}
   - nameMusic: CountdownStartFx
     audioClip: {fileID: 8300000, guid: f1e6ccd9ec15a4ba497bb6fdea981552, type: 3}
+  - nameMusic: LevelLoseFx
+    audioClip: {fileID: 8300000, guid: 54c4babe9d94042249a5ecc485964a49, type: 3}
+  - nameMusic: LevelCompleteFx
+    audioClip: {fileID: 8300000, guid: 9f439c47fd96e4c0b93d571d2492eb37, type: 3}
 --- !u!4 &192865460
 Transform:
   m_ObjectHideFlags: 0
@@ -3763,7 +3767,7 @@ MonoBehaviour:
     - {fileID: 4757458525353260861, guid: 8133fc899b2234a03a410cc28ad8764d, type: 3}
   - nameWorld: Sahara
     listLevel:
-    - {fileID: 4757458525353260861, guid: 8133fc899b2234a03a410cc28ad8764d, type: 3}
+    - {fileID: 3003111491945289935, guid: 4d34a50e54cafa94f95488e3a802a21d, type: 3}
     - {fileID: 4757458525353260861, guid: 8133fc899b2234a03a410cc28ad8764d, type: 3}
     - {fileID: 4757458525353260861, guid: 8133fc899b2234a03a410cc28ad8764d, type: 3}
     - {fileID: 4757458525353260861, guid: 8133fc899b2234a03a410cc28ad8764d, type: 3}
@@ -6184,7 +6188,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1330603094}
   m_HandleRect: {fileID: 1330603093}
   m_Direction: 0
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -7783,7 +7787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1137705668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8646,7 +8650,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3d8675433a508ec47b8f895201eacf20, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6b3579cca7fd497d8def07d250d80c8, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -9297,7 +9301,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 96b763fe6e8c74770ad77d88452ba694, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9928,8 +9932,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4681504172522020304, guid: 4f12ecceb98fe5149b7f07258118abf5,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: b055a1d29c0e94af78b6fd58c1065853, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10020,8 +10023,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5500618298159613981, guid: a8dcd8e6599d27749bcd4854c5ad71fc,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: d203cc2653e104232bebebb10c0e0756, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11624,7 +11626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.32293522, g: 0.39823657, b: 0.5566038, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -12494,7 +12496,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: bc4a216a264964218b2812a4867488fd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -12583,12 +12585,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 5eea10bbc50c1435eb754630fd23798d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -21052,7 +21054,7 @@ PrefabInstance:
     - target: {fileID: 5861609077609483365, guid: 1f31ce5eeaf1040f384fe3fda4da98d7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 523.3333
+      value: 523.6283
       objectReference: {fileID: 0}
     - target: {fileID: 5861609077609483365, guid: 1f31ce5eeaf1040f384fe3fda4da98d7,
         type: 3}

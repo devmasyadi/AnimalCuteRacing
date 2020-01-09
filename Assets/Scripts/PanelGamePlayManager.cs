@@ -38,6 +38,7 @@ public class PanelGamePlayManager : MonoBehaviour
     IEnumerator FuelSystem(float fuel)
     {
         var timeLeft = fuel;
+        yield return new WaitUntil(()=>gamePlayManager.state == GamePlayManager.State.play);
         while (timeLeft > 0 && gamePlayManager.state == GamePlayManager.State.play)
         {
             timeLeft -= Time.deltaTime;
@@ -45,7 +46,7 @@ public class PanelGamePlayManager : MonoBehaviour
             if (timeLeft <= 0)
             {
                 GamePlayManager.instance.GameOVer();
-                Debug.Log("mati");
+                Debug.Log("dead by fuel");
             }
             yield return null;
         }

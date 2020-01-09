@@ -53,6 +53,20 @@ public class MusicManager : MonoBehaviour
         }
     }
 
+    public void PlayAudio(string nameAudio, bool isLopp)
+    {
+        foreach (var item in dataMusics)
+        {
+            if (item.nameMusic.Equals(nameAudio))
+            {
+                audioSource.clip = item.audioClip;
+                audioSource.Play();
+                audioSource.loop = isLopp;
+                break;
+            }
+        }
+    }
+
     public AudioClip GetAudioClip(string nameAudio)
     {
         AudioClip resAudio = null;

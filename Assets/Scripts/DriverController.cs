@@ -66,7 +66,7 @@ public class DriverController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag.Equals("DeadTrigger"))
+        if (collision.gameObject.tag.Equals("DeadTrigger") && GamePlayManager.instance.state == GamePlayManager.State.play)
         {
             // Time.timeScale = 0.1f;
             Debug.Log("mati");

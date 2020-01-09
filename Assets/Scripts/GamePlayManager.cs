@@ -9,6 +9,7 @@ public class GamePlayManager : MonoBehaviour
     public static GamePlayManager instance;
     public enum State
     {
+        prepare,
         play,
         resume,
         gameOver,
@@ -47,6 +48,8 @@ public class GamePlayManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        state = State.prepare; 
+        PanelGamePlayManager.instance.SetTxtLevel(indexLevel + 1);
         player = GameObject.FindGameObjectWithTag("Player");
         player.AddComponent<TriggersGamePlay>();
         lineFinish = null;
@@ -74,7 +77,7 @@ public class GamePlayManager : MonoBehaviour
 
     IEnumerator GetDistance()
     {
-        while (state == State.play && lineFinish != null)
+        while (state == State.play || state == State.prepare && lineFinish != null)
         {
             distance = (lineFinish.transform.position - lineStart.transform.position).magnitude;
             currentMeter = distance - (lineFinish.transform.position - player.transform.position).magnitude;
@@ -115,7 +118,6 @@ public class GamePlayManager : MonoBehaviour
         SetUpBasePanel(false, false, false);
         if (MusicManager.instance != null)
             MusicManager.instance.PlayAudio("MusicWorld_1");
-        PanelGamePlayManager.instance.SetTxtLevel(indexLevel + 1);
     }
 
     public void ShowPanelResume()
@@ -155,6 +157,7 @@ public class GamePlayManager : MonoBehaviour
         state = State.gameOver;
         DriverController.instance.SetAnimLoss();
         SetUpBasePanel(false, true, false);
+        MusicManager.instance.PlayAudio("LevelLoseFx", false);
     }
 
     public void DeadByTrigger()
@@ -162,6 +165,7 @@ public class GamePlayManager : MonoBehaviour
         state = State.gameOver;
         DriverController.instance.DoRagdoll(true);
         SetUpBasePanel(false, true, false);
+        MusicManager.instance.PlayAudio("LevelLoseFx", false);
     }
 
     public void Finish()
@@ -170,5 +174,6 @@ public class GamePlayManager : MonoBehaviour
         DriverController.instance.SetAnimWin();
         SetUpBasePanel(false, false, true);
         Debug.Log("Finish");
+        MusicManager.instance.PlayAudio("LevelCompleteFx", false);
     }
 }
