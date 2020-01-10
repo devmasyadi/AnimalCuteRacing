@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 6379467798722760282}
   - component: {fileID: 6379467798722760261}
   - component: {fileID: 6379467798722760260}
+  - component: {fileID: 8598793998881183392}
   m_Layer: 0
   m_Name: Car_01 1
   m_TagString: Player
@@ -267,6 +268,8 @@ MonoBehaviour:
   centerOfMassa: {fileID: 6379467798722760282}
   soundEngine: {fileID: 8300000, guid: 88fa652b97f7d4b33b13cde287b788cd, type: 3}
   driverParent: {fileID: 2611247735946992908}
+  defaultFuel: 30
+  defaultPowerEngine: 400
   fuel: 30
   maxTurn: 0
   powerEngine: 1000
@@ -281,6 +284,37 @@ MonoBehaviour:
   throttleWheels:
   - {fileID: 6379467799458253374}
   - {fileID: 6379467799458253368}
+  isGrounded: 0
+  isStable: 0
+--- !u!114 &8598793998881183392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6379467798722760263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646123f995845421db58f118a00116ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataItems:
+  - type: 0
+    firstPrice: 400
+    addValue: 100
+    maxUpgrade: 10
+  - type: 1
+    firstPrice: 430
+    addValue: 10
+    maxUpgrade: 10
+  - type: 2
+    firstPrice: 410
+    addValue: 10
+    maxUpgrade: 5
+  - type: 3
+    firstPrice: 550
+    addValue: 30
+    maxUpgrade: 20
 --- !u!1 &6379467798760173370
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,9 +37,11 @@ public class PanelCarSelection : MonoBehaviour
         if (!PlayerPrefs.HasKey("Coin"))
             PlayerPrefs.SetInt("Coin", 0);
 
+        SetCoin(PlayerPrefs.GetInt("Coin"));
+
         // PlayerPrefs.DeleteAll();
         // PlayerPrefs.SetInt("Coin", 99999);
-        SetCoin(PlayerPrefs.GetInt("Coin"));
+        // SetCoin(PlayerPrefs.GetInt("Coin"));
 
         SetLockUnlocokCar();
 
@@ -99,11 +101,11 @@ public class PanelCarSelection : MonoBehaviour
     {
         btnUnlock.gameObject.SetActive(isShowBtnUnlock);
         btnNext.gameObject.SetActive(!isShowBtnUnlock);
-         Debug.Log(" : "+isShowBtnUnlock);
+        Debug.Log(" : "+isShowBtnUnlock);
 
     }
 
-    void SetCoin(int coin)
+    public void SetCoin(int coin)
     {
         txtCoin.text = coin.ToString();
     }

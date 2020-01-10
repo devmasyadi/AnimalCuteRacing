@@ -769,6 +769,7 @@ GameObject:
   - component: {fileID: 6387044165872547823}
   - component: {fileID: 7621786526568130860}
   - component: {fileID: 1486584772521999083}
+  - component: {fileID: 1238401140396599273}
   m_Layer: 0
   m_Name: supercar
   m_TagString: Player
@@ -807,7 +808,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 300
   m_Drag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1.25
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -831,6 +832,8 @@ MonoBehaviour:
   centerOfMassa: {fileID: 3723744423445942934}
   soundEngine: {fileID: 8300000, guid: 88fa652b97f7d4b33b13cde287b788cd, type: 3}
   driverParent: {fileID: 1933912971261171914}
+  defaultFuel: 30
+  defaultPowerEngine: 300
   fuel: 30
   maxTurn: 0
   powerEngine: 1000
@@ -846,6 +849,36 @@ MonoBehaviour:
   - {fileID: 1822575291563715029}
   - {fileID: 4575883468961454617}
   isGrounded: 0
+  isStable: 0
+--- !u!114 &1238401140396599273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7996157685831992828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646123f995845421db58f118a00116ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataItems:
+  - type: 0
+    firstPrice: 250
+    addValue: 100
+    maxUpgrade: 10
+  - type: 1
+    firstPrice: 230
+    addValue: 10
+    maxUpgrade: 10
+  - type: 2
+    firstPrice: 310
+    addValue: 10
+    maxUpgrade: 5
+  - type: 3
+    firstPrice: 350
+    addValue: 30
+    maxUpgrade: 20
 --- !u!1 &8169891227801304568
 GameObject:
   m_ObjectHideFlags: 0

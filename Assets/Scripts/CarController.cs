@@ -20,10 +20,17 @@ public class CarController : MonoBehaviour
     public Transform centerOfMassa;
     public AudioClip soundEngine;
     public Transform driverParent;
+
+    public float defaultFuel;
+    public float defaultPowerEngine;
+
     public float fuel;
+    [HideInInspector]
     public float maxTurn;
     public float powerEngine;
+    [HideInInspector]
     public float powerBreake;
+    [HideInInspector]
     public float speedRotationInAir;
     public float positionZ;
     float rotationY = 90f;
@@ -50,6 +57,7 @@ public class CarController : MonoBehaviour
     void Start()
     {
         instance = this;
+        setFirstValueVehilce();
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.maxAngularVelocity = 2f;
         if (objSmoke != null && parentSmoke != null)
@@ -63,6 +71,7 @@ public class CarController : MonoBehaviour
         isGrounded = false;
         isStable = false;
         PlaySoundEngine();
+
     }
 
     // Update is called once per frame
@@ -73,6 +82,44 @@ public class CarController : MonoBehaviour
         setSmoke();
         setCenterOfMassa();
         // SetSoundEngineSystem();
+    }
+
+    void setFirstValueVehilce()
+    {
+        var nameKey = gameObject.name;
+        if (!PlayerPrefs.HasKey(nameKey))
+        {
+            PlayerPrefs.SetFloat(nameKey + "fuel", defaultFuel);
+            PlayerPrefs.SetFloat(nameKey + "engine", defaultPowerEngine);
+            PlayerPrefs.SetInt(nameKey, 1);
+        }
+        var valueFuel = PlayerPrefs.GetFloat(nameKey + "fuel");
+        var valuePowerEngine = PlayerPrefs.GetFloat(nameKey + "engine");
+        Debug.Log("valuePowerEngine"+valuePowerEngine);
+        setValueVehicle(valuePowerEngine, valueFuel);
+    }
+
+    void setValueVehicle(float powerEngine, float fuel)
+    {
+        this.powerEngine = powerEngine;
+        this.fuel = fuel;
+    }
+
+    public void addValueEngine(float valueAddPowerEngine)
+    {
+        var key = gameObject.name+"engine";
+        var valuePowerEngine = PlayerPrefs.GetFloat(key);
+        valuePowerEngine += valueAddPowerEngine;
+        Debug.Log(key);
+        PlayerPrefs.SetFloat(key, valuePowerEngine);
+    }
+
+    public void addValueFuel(float valueAdd)
+    {
+        var key = gameObject.name+"fuel";
+        var value = PlayerPrefs.GetFloat(key);
+        value += valueAdd;
+        PlayerPrefs.SetFloat(key, value);
     }
 
     void SetUpInput()
