@@ -1,6 +1,10 @@
 {
+<<<<<<< HEAD
 	"process_id" : 415,
+=======
+	"process_id" : 2205,
+>>>>>>> c3c3de5bb894bb2c7ccebc2c42b2fcbfc1146de9
 	"version" : "2019.2.15f1",
-	"app_path" : "/Applications/Unity 2019.2.15f1/Unity.app",
-	"app_contents_path" : "/Applications/Unity 2019.2.15f1/Unity.app/Contents"
+	"app_path" : "/Applications/Unity/Hub/Editor/2019.2.15f1/Unity.app",
+	"app_contents_path" : "/Applications/Unity/Hub/Editor/2019.2.15f1/Unity.app/Contents"
 }
