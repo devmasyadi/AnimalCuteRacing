@@ -73,7 +73,7 @@ public class PanelCarSelection : MonoBehaviour
             item.price = CarsSelection.instance.dataCarSelections[index].price;
             item.txtLevel.text = item.price.ToString();
             index++;
-            // Debug.Log(item.gameObject.name+" : "+isLock);
+            Debug.Log(item.gameObject.name+" : "+isLock);
         }
     }
 
@@ -99,6 +99,8 @@ public class PanelCarSelection : MonoBehaviour
     {
         btnUnlock.gameObject.SetActive(isShowBtnUnlock);
         btnNext.gameObject.SetActive(!isShowBtnUnlock);
+         Debug.Log(" : "+isShowBtnUnlock);
+
     }
 
     void SetCoin(int coin)

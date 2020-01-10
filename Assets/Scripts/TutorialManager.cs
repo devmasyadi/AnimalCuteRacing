@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
+    public GameObject panelResume;
     public static TutorialManager instance;
     public Transform parentPlayer;
     GameObject player;
@@ -19,6 +20,7 @@ public class TutorialManager : MonoBehaviour
         instance = this;
         player = GameObject.FindGameObjectWithTag("Player");
         player.AddComponent<TriggersTutorial>();
+        panelResume.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider coll)
@@ -27,7 +29,5 @@ public class TutorialManager : MonoBehaviour
         {
             Debug.Log("kena BackWard");
         }
-
-        Debug.Log("Kena");
     }
 }

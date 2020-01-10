@@ -16,6 +16,7 @@ TagManager:
   - Driver
   - Ground
   - LineStart
+  - FinishTutorial
   layers:
   - Default
   - TransparentFX

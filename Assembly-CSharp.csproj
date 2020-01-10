@@ -80,6 +80,7 @@
      <Compile Include="Assets\Scripts\PanelDialogWindow.cs" />
      <Compile Include="Assets\Scripts\PanelGamePlayManager.cs" />
      <Compile Include="Assets\Scripts\PanelLevelSelection.cs" />
+     <Compile Include="Assets\Scripts\PanelResume.cs" />
      <Compile Include="Assets\Scripts\PanelSelectMode.cs" />
      <Compile Include="Assets\Scripts\PanelTextInfoGamePlay.cs" />
      <Compile Include="Assets\Scripts\PanelTutorial.cs" />

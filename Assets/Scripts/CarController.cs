@@ -42,6 +42,10 @@ public class CarController : MonoBehaviour
     AudioSource audioSource;
     [HideInInspector]
     public bool isGrounded;
+
+    [HideInInspector]
+    public bool isStable;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -57,6 +61,7 @@ public class CarController : MonoBehaviour
         audioSource.playOnAwake = false;
         audioSource.loop = true;
         isGrounded = false;
+        isStable = false;
         PlaySoundEngine();
     }
 
@@ -105,7 +110,7 @@ public class CarController : MonoBehaviour
 
                 if (wheel.isGrounded)
                 {
-                    if (GamePlayManager.instance != null && GamePlayManager.instance.state == GamePlayManager.State.play)
+                    if (GamePlayManager.instance != null && GamePlayManager.instance.state == GamePlayManager.State.play || isStable)
                         stableCar();
                     isGrounded = true;
                 }

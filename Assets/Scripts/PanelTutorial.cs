@@ -47,9 +47,15 @@ public class PanelTutorial : MonoBehaviour
 
     void SetUpButton()
     {
-        btnSkip.onClick.AddListener(()=>SceneManager.LoadScene("MainMenu"));
+        btnSkip.onClick.AddListener(()=>SkipTutorial());
         btnThrottle.onClick.AddListener(() => DisableAnimatorThrottle());
         btnBrake.onClick.AddListener(() => DisableAnimatorBrake());
+        btnResume.onClick.AddListener(()=>Resume());
+    }
+
+    public void SkipTutorial()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     void SetTutorialHoldThrottle()
@@ -82,6 +88,12 @@ public class PanelTutorial : MonoBehaviour
     {
         if (btnBrake.GetComponent<Animator>().enabled)
             btnBrake.GetComponent<Animator>().enabled = false;
+    }
+
+    void Resume()
+    {
+        TutorialManager.instance.panelResume.SetActive(true);
+        Time.timeScale = 0f;
     }
 
 

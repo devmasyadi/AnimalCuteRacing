@@ -37,6 +37,10 @@ public class TriggersTutorial : MonoBehaviour
 
         SetItemCoins();
         SetItemGas();
+
+        if (CarController.instance != null)
+            CarController.instance.isStable = true;
+
     }
 
     void Update()
@@ -74,6 +78,7 @@ public class TriggersTutorial : MonoBehaviour
         {
             collider.GetComponent<MoveTowardsUI>().Target = PanelTutorial.instance.dummyCoinTxt;
             collider.enabled = false;
+             collider.GetComponent<AudioSource>().Play();
             Debug.Log("Kena : " + collider.gameObject);
             // Destroy(collider.gameObject);
         }
@@ -81,6 +86,7 @@ public class TriggersTutorial : MonoBehaviour
         {
             collider.GetComponent<MoveTowardsUI>().Target = PanelTutorial.instance.dummyCoinTxt;
             collider.enabled = false;
+            collider.GetComponent<AudioSource>().Play();
             Debug.Log("Kena : " + collider.gameObject);
             // Destroy(collider.gameObject);
         }
@@ -90,8 +96,13 @@ public class TriggersTutorial : MonoBehaviour
             collider.enabled = false;
             _rigidbody.isKinematic = true;
             PanelTutorial.instance.SetTutorialHoldThrottleInAir();
+            if (CarController.instance != null)
+                CarController.instance.isStable = false;
         }
-        Debug.Log("kena aja");
+        else if(collider.gameObject.tag.Equals("FinishTutorial"))
+        {   
+            PanelTutorial.instance.SkipTutorial();
+        }
     }
 
     int countClickStart = 0;
@@ -118,22 +129,28 @@ public class TriggersTutorial : MonoBehaviour
     void SetItemCoins()
     {
         var itemCoins = GameObject.FindGameObjectsWithTag("ItemCoin");
-        AddMoveTowardsUI(itemCoins, true);
+        AddMoveTowardsUI(itemCoins, true, "Coin");
     }
 
     void SetItemGas()
     {
         var itemGass = GameObject.FindGameObjectsWithTag("ItemGas");
-        AddMoveTowardsUI(itemGass, false);
+        AddMoveTowardsUI(itemGass, false, "Gas");
     }
 
-    void AddMoveTowardsUI(GameObject[] objects, bool isRotate)
+    void AddMoveTowardsUI(GameObject[] objects, bool isRotate, string nameAudio)
     {
         foreach (var item in objects)
         {
             var moveTowardsUI = item.AddComponent<MoveTowardsUI>();
-            if(isRotate)
+            if (isRotate)
                 item.AddComponent<RotateObj>().speedRotation = 180f;
+            if (!string.IsNullOrEmpty(nameAudio))
+            {
+                var audiosource = item.AddComponent<AudioSource>();
+                audiosource.playOnAwake = false;
+                audiosource.clip = MusicManager.instance.GetAudioClip(nameAudio);
+            }
             moveTowardsUI.Speed = 1;
             moveTowardsUI.StopOnArrival = true;
             moveTowardsUI.MoveInZ = false;
